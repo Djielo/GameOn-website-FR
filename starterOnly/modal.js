@@ -5,6 +5,7 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const modalClose = document.querySelector(".close");
+const modalOverlayClose = document.querySelector(".overlay");
 
 function editNav() {
     const x = document.getElementById("myTopnav");
@@ -30,3 +31,7 @@ function closeModal() {
 }
 
 // Close modal overlay
+modalOverlayClose.addEventListener("click", modalOverlay);
+function modalOverlay() {
+    modalbg.style.display = "none";
+}
