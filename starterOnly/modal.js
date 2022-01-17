@@ -4,9 +4,10 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+const modalClose = document.querySelector(".close");
 
 function editNav() {
-    let x = document.getElementById("myTopnav");
+    const x = document.getElementById("myTopnav");
     if (x.className === "topnav") {
         x.className += " responsive";
     } else {
@@ -22,3 +23,10 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
+// Close modal button
+modalClose.addEventListener("click", closeModal);
+function closeModal() {
+    modalbg.style.display = "none";
+}
+
+// Close modal overlay
