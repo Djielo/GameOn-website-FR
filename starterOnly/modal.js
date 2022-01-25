@@ -4,8 +4,10 @@
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
-const modalClose = document.querySelector(".close");
-const modalOverlayClose = document.querySelector(".overlay");
+const modalCrossClose = document.querySelector(".close");
+// const modalOverlayClose = document.querySelector(".overlay");
+
+// Close Modal
 
 function editNav() {
     const x = document.getElementById("myTopnav");
@@ -24,14 +26,10 @@ function launchModal() {
     modalbg.style.display = "block";
 }
 
-// Close modal button
-modalClose.addEventListener("click", closeModal);
+// Close modal
 function closeModal() {
     modalbg.style.display = "none";
 }
 
-// Close modal overlay
-modalOverlayClose.addEventListener("click", modalOverlay);
-function modalOverlay() {
-    modalbg.style.display = "none";
-}
+modalCrossClose.addEventListener("click", closeModal);
+// modalOverlayClose.addEventListener("click", closeModal);
