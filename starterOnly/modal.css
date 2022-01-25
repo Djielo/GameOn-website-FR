@@ -437,8 +437,8 @@ input[data-error]::after {
     position: relative;
     z-index: 1;
 }
-.hero-headline {
-    font-size: 6rem;
+.hero-headline {    
+    font-size: 4.5rem;
     font-weight: normal;
     white-space: nowrap;
 }
