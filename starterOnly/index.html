@@ -23,7 +23,7 @@
       <a href="#"><span>À propos</span></a>
       <a href="#"><span>Contact</span></a>
       <a href="#"><span>Évènements passés</span></a>
-      <a href="javascript:void(0);" class="icon" onclick="editNav()">
+      <a href="#" class="icon" id="burger">
         <i class="fa fa-bars"></i>
       </a>
     </div>
@@ -56,34 +56,34 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
-            <form name="reserve" action="index.html" method="get" onsubmit="return validate();">
-              <div class="formData">
+            <form name="reserve" action="index.html" method="get" id="form" novalidate onsubmit="return validate();">
+              <div class="formData" data-error-visible="" data-error="Doit contenir au minimum 2 caractères">
                 <label for="first">Prénom</label><br>
                 <input type="text" id="first" class="text-control" name="first" minlength="2"/><br>
                 <span></span>
               </div>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Doit contenir au minimum 2 caractères">
                 <label for="last">Nom</label><br>
                 <input type="text" id="last" class="text-control" name="last"/><br>
                 <span></span>
               </div>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Doit répondre aux caractéristiques d'une adresse mail">
                 <label for="email">E-mail</label><br>
                 <input type="email" id="email" class="text-control" name="email"/><br>
                 <span></span>
               </div>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Doit répondre aux caractéristiques d'une date">
                 <label for="birthdate">Date de naissance</label><br>
                 <input type="date" id="birthdate" class="text-control" name="birthdate"/><br>
                 <span></span>
               </div>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Doit être un chiffre">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number"  id="quantity" class="text-control"name="quantity" min="0" max="99">
                 <span></span>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Veuillez sélectionner une ville">
                 <input type="radio" id="location1" class="checkbox-input" name="location" value="New York"/>
                 <label for="location1" class="checkbox-label">
                 <span></span>
@@ -121,7 +121,7 @@
                   Portland</label
                 >
               </div>
-              <div class="formData">
+              <div class="formData" data-error-visible="" data-error="Veuillez accepter les CU">
                 <input type="checkbox" id="checkbox1" class="checkbox-input" checked/>
                 <label for="checkbox1" class="checkbox2-label" required>
                 <span></span>
@@ -147,7 +147,7 @@
       <p class="copyrights">
         Copyright 2014 - 2022, GameOn Inc.
       </p>
-    </footer>        
-    <script src="modal.js"></script>
+    </footer>       
+    <script type="module" src="./scripts/main.js" ></script>
   </body>
 </html>
