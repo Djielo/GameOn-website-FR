@@ -1,6 +1,6 @@
 import { validateForm } from "./validation.js";
-import { editNav, launchModal, closeModal } from "./modal.js";
-import { editNav, launchModal, closeModal } from "./modal.js";
+import { launchModal, closeModal } from "./modal.js";
+import { editNav } from "./menu.js";
 
 //=====================================================//
 //================= RESPONSIVE MENU ===================//
@@ -17,6 +17,70 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // On va chercher le formulaire dans le DOM
 export const formAll = document.querySelector("#form");
 
+//=================================================//
+//================== REGEXP =======================//
+const regexName = /[\w+\W+\w]{2,15}/;
+const regexpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
+const regexDate = /^(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d$/;
+const regexNumber = /^[1-9]$/;
+
+//================================================================//
+//=================== CONTROL CONTENT IN INPUT ===================//
+export const validateFirstName = (value) => {
+    console.log(value);
+    // analyse la condition (longueur + regex)
+    if (value.length > 1 && regexName.test(value) === true) {
+        console.log("Le prénom est valide");
+    } else {
+        console.log("Problème avec le prénom");
+        errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
+        formData.setAttribute("data-error-visible", "true");
+    }
+};
+
+export const validateLastName = (value) => {
+    console.log(value);
+    // analyse la condition (longueur + regex)
+    if (value.length > 1 && regexName.test(value) === true) {
+        console.log("Le nom est valide");
+    } else {
+        console.log("Problème avec le nom");
+        errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
+        // formData.setAttribute("data-error-visible", "true");
+    }
+};
+export const validateEmail = (value) => {
+    console.log(value);
+};
+export const validateBirthdate = (value) => {
+    console.log(value);
+};
+export const validateQuantity = (value) => {
+    console.log(value);
+};
+export const validateCity = (value) => {
+    console.log(value);
+};
+export const validateCondition = (value) => {
+    console.log(value);
+};
+
+// Fonction qui gère l'affichage des erreurs
+function errorDisplay() {
+    const formData = document.querySelector();
+    const span = document.querySelector(".formData > span");
+
+    if (!valid) {
+        formData.classList.add("error");
+        span.textContent = message;
+    } else {
+        console.log("oui");
+        formData.classList.remove("error");
+    }
+}
+
+//===============================================//
+//================== SUBMIT =====================//
 // Permet d'éviter le rechargement de la page, de valider ou pas le formulaire et agir selon le résultat (affichage des erreurs ou validation du form)
 function handleEvent(e) {
     e.preventDefault();
@@ -25,8 +89,6 @@ function handleEvent(e) {
 
 // Je rajoute un écouteur pour savoir à quel moment le formuaire est soumis afin de lancer le controle de validation du formulaire
 formAll.addEventListener("submit", handleEvent);
-
-//
 //
 //
 //
@@ -37,11 +99,11 @@ formAll.addEventListener("submit", handleEvent);
 //
 //===========================================================================//
 //================== INPUTS CONTENT VALIDATION CONTROL ======================//
-// On sélectionne ici les inputs qui contiennent une class text-control ou checkbox-input
+//On sélectionne ici les inputs qui contiennent une class text-control ou checkbox-input
 // const inputs = document.querySelectorAll(`input[class="text-control"], input[class="checkbox-input"]`);
 
-// On controle le contenu de chaque élément suivant un mode de validation qui lui est propre et qui valide la saisie dans les champs
-// const textControl = (value, tag, name) => {
+//On controle le contenu de chaque élément suivant un mode de validation qui lui est propre et qui valide la saisie dans les champs
+// export const validateFirstName = (value, tag, name) => {
 //     if (tag === "first" || tag === "last") {
 //         // mettre le regexp à la place du value.length < 2 !
 //         if (value.length < 2 && regexName.test(value) === true) {
@@ -52,13 +114,13 @@ formAll.addEventListener("submit", handleEvent);
 //             errorDisplay(`#${tag}`, `Le ${name} doit avoir au moins 2 caractères`, true);
 //             formData.setAttribute("data-error-visible", "true");
 //         }
-//     } else if (tag === "email") {
-//         // mettre le regexp pour valider l'email, etc..
-//         if (regexpEmail.test(value)) {
-//             console.log("youpi !!");
-//         } else {
-//             console.log("dommage :-(");
-//         }
+// } else if (tag === "email") {
+//     // mettre le regexp pour valider l'email, etc..
+//     if (regexpEmail.test(value)) {
+//         console.log("youpi !!");
+//     } else {
+//         console.log("dommage :-(");
+//     }
 //     }
 // };
 
