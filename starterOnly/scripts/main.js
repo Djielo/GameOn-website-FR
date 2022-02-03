@@ -2,6 +2,11 @@ import { validateForm } from "./validation.js";
 import { launchModal, closeModal } from "./modal.js";
 import { editNav } from "./menu.js";
 
+//==================================================//
+//================= GLOBAL =========================//
+// On va chercher le formulaire dans le DOM
+export const formAll = document.querySelector("#form");
+
 //=====================================================//
 //================= RESPONSIVE MENU ===================//
 const burgerButton = document.querySelector("#burger");
@@ -14,164 +19,105 @@ const modalBtn = document.querySelectorAll(".modal-btn");
 modalCrossClose.addEventListener("click", closeModal);
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
-// On va chercher le formulaire dans le DOM
-export const formAll = document.querySelector("#form");
-
 //=================================================//
 //================== REGEXP =======================//
-const regexName = /[\w+\W+\w]{2,15}/;
-const regexpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,6})+$/;
-const regexDate = /^(0[1-9]|[12][0-9]|3[01])[- \/.](0[1-9]|1[012])[- \/.](19|20)\d\d$/;
-const regexNumber = /^[1-9]$/;
+const regexName = /^[a-zA-Z]{2,15}/;
+const regexpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
+const regexDate = /^19[00-99]{2}|200[0-8]{1}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$/;
+const regexNumber = /^[1-9]{1}$/;
 
 //================================================================//
 //=================== CONTROL CONTENT IN INPUT ===================//
 export const validateFirstName = (value) => {
-    console.log(value);
-    // analyse la condition (longueur + regex)
-    if (value.length > 1 && regexName.test(value) === true) {
-        console.log("Le prénom est valide");
-    } else {
-        console.log("Problème avec le prénom");
-        // errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
-        // formData.setAttribute("data-error-visible", "true");
-    }
+  const inputFirstName = document.querySelector("input#first");
+  const errorFirstName = document.querySelector("span.firstError");
+
+  // analyse la condition (longueur + regex)
+  if (value.length > 1 && regexName.test(value) === true) {
+    // Encadrer input en vert et enlever le message d'erreur
+    inputFirstName.style.border = "3px solid green";
+    errorFirstName.style.visibility = "hidden";
+    return true;
+  } else {
+    // Encadrer input en rouge et mettre le message d'erreur
+    inputFirstName.style.border = "3px solid red";
+    errorFirstName.style.visibility = "visible";
+  }
 };
 
 export const validateLastName = (value) => {
-    console.log(value);
-    // analyse la condition (longueur + regex)
-    if (value.length > 1 && regexName.test(value) === true) {
-        console.log("Le nom est valide");
-    } else {
-        console.log("Problème avec le nom");
-        // errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
-        // formData.setAttribute("data-error-visible", "true");
-    }
+  const inputLastName = document.querySelector("input#last");
+  const errorLastName = document.querySelector("span.lastError");
+
+  // analyse la condition (longueur + regex)
+  if (value.length > 1 && regexName.test(value) === true) {
+    inputLastName.style.border = "3px solid green";
+    errorLastName.style.visibility = "hidden";
+    return true;
+  } else {
+    inputLastName.style.border = "3px solid red";
+    errorLastName.style.visibility = "visible";
+  }
 };
+
 export const validateEmail = (value) => {
-    console.log(value);
+  const inputEmail = document.querySelector("input#email");
+  const errorEmail = document.querySelector("span.emailError");
+
+  if (regexpEmail.test(value)) {
+    inputEmail.style.border = "3px solid green";
+    errorEmail.style.visibility = "hidden";
+    return true;
+  } else {
+    inputEmail.style.border = "3px solid red";
+    errorEmail.style.visibility = "visible";
+  }
 };
 export const validateBirthdate = (value) => {
-    console.log(value);
+  const inputBirthdate = document.querySelector("input#birthdate");
+  const errorBirthdate = document.querySelector("span.birthdateError");
+
+  if (regexDate.test(value)) {
+    inputBirthdate.style.border = "3px solid green";
+    errorBirthdate.style.visibility = "hidden";
+    return true;
+  } else {
+    inputBirthdate.style.border = "3px solid red";
+    errorBirthdate.style.visibility = "visible";
+  }
 };
 export const validateQuantity = (value) => {
-    console.log(value);
-};
-export const validateCity = (value) => {
-    console.log(value);
-};
-export const validateCondition = (value) => {
-    console.log(value);
-};
+  const inputQuantity = document.querySelector("input#quantity");
+  const errorQuantity = document.querySelector("span.quantityError");
 
-// Fonction qui gère l'affichage des erreurs
-function errorDisplay() {
-    const formData = document.querySelector();
-    const span = document.querySelector(".formData > span");
+  if (regexNumber.test(value)) {
+    inputQuantity.style.border = "3px solid green";
+    errorQuantity.style.visibility = "hidden";
+    return true;
+  } else {
+    inputQuantity.style.border = "3px solid red";
+    errorQuantity.style.visibility = "visible";
+  }
+};
+export const validateCondition = () => {
+  const inputCondition = document.querySelector("input#checkbox1");
+  const errorCondition = document.querySelector("span.checkbox1Error");
 
-    if (!valid) {
-        formData.classList.add("error");
-        span.textContent = message;
-    } else {
-        console.log("oui");
-        formData.classList.remove("error");
-    }
-}
+  if (inputCondition.checked === true) {
+    errorCondition.style.visibility = "hidden";
+    return true;
+  } else {
+    errorCondition.style.visibility = "visible";
+  }
+};
 
 //===============================================//
 //================== SUBMIT =====================//
 // Permet d'éviter le rechargement de la page, de valider ou pas le formulaire et agir selon le résultat (affichage des erreurs ou validation du form)
 function handleEvent(e) {
-    e.preventDefault();
-    validateForm();
+  e.preventDefault();
+  validateForm();
 }
 
 // Je rajoute un écouteur pour savoir à quel moment le formuaire est soumis afin de lancer le controle de validation du formulaire
 formAll.addEventListener("submit", handleEvent);
-//
-//
-//
-//
-//
-//
-//
-//
-//===========================================================================//
-//================== INPUTS CONTENT VALIDATION CONTROL ======================//
-//On sélectionne ici les inputs qui contiennent une class text-control ou checkbox-input
-// const inputs = document.querySelectorAll(`input[class="text-control"], input[class="checkbox-input"]`);
-
-//On controle le contenu de chaque élément suivant un mode de validation qui lui est propre et qui valide la saisie dans les champs
-// export const validateFirstName = (value, tag, name) => {
-//     if (tag === "first" || tag === "last") {
-//         // mettre le regexp à la place du value.length < 2 !
-//         if (value.length < 2 && regexName.test(value) === true) {
-//             console.log("yes");
-//             errorDisplay(`#${tag}`, `Le ${name} doit avoir au moins 2 caractères`, false);
-//             // résoudre le else pour enlever l'erreur !
-//         } else {
-//             errorDisplay(`#${tag}`, `Le ${name} doit avoir au moins 2 caractères`, true);
-//             formData.setAttribute("data-error-visible", "true");
-//         }
-// } else if (tag === "email") {
-//     // mettre le regexp pour valider l'email, etc..
-//     if (regexpEmail.test(value)) {
-//         console.log("youpi !!");
-//     } else {
-//         console.log("dommage :-(");
-//     }
-//     }
-// };
-
-// inputs.forEach((input) => {
-//     input.addEventListener("input", (e) => {
-//         let inputValue = e.target.value;
-//         let tag = e.target.id;
-//         textControl(inputValue, tag);
-//     });
-// });
-
-// // inputs.forEach((input) => {
-// //     input.addEventListener("input", (e) => {
-// //         console.log(e.target.checked);
-// //     });
-// // });
-
-// // Fonction qui gère l'affichage des erreurs
-// const errorDisplay = (tag, message, valid) => {
-//     const formData = document.querySelector(`${tag}`);
-//     const span = document.querySelector(".formData > span");
-
-//     if (!valid) {
-//         console.log(tag);
-//         formData.classList.add("error");
-//         span.textContent = message;
-//     } else {
-//         console.log("oui");
-//         formData.classList.remove("error");
-//     }
-// };
-
-// // Fonction qui gère le submit
-// function controlInputs() {
-//     const valid = false;
-//     const first = document.getElementById("first");
-//     const last = document.getElementById("last");
-//     const email = document.getElementById("email");
-//     const birthdate = document.getElementById("birthdate");
-//     const quantity = document.getElementById("quantity");
-//     const location1 = document.getElementById("location1");
-//     const location2 = document.getElementById("location2");
-//     const location3 = document.getElementById("location3");
-//     const location4 = document.getElementById("location4");
-//     const location5 = document.getElementById("location5");
-//     const location6 = document.getElementById("location6");
-//     const checkbox1 = document.getElementById("checkbox1");
-//     if (first === true) {
-//         console.log("dingue !");
-//         // } else if {
-
-//         // }
-//     }
-// }
