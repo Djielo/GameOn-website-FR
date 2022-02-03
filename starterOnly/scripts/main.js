@@ -33,8 +33,8 @@ export const validateFirstName = (value) => {
         console.log("Le prénom est valide");
     } else {
         console.log("Problème avec le prénom");
-        errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
-        formData.setAttribute("data-error-visible", "true");
+        // errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
+        // formData.setAttribute("data-error-visible", "true");
     }
 };
 
@@ -45,7 +45,7 @@ export const validateLastName = (value) => {
         console.log("Le nom est valide");
     } else {
         console.log("Problème avec le nom");
-        errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
+        // errorDisplay(`#first`, `Le prénom doit avoir au moins 2 caractères`, true);
         // formData.setAttribute("data-error-visible", "true");
     }
 };
@@ -66,18 +66,18 @@ export const validateCondition = (value) => {
 };
 
 // Fonction qui gère l'affichage des erreurs
-function errorDisplay() {
-    const formData = document.querySelector();
-    const span = document.querySelector(".formData > span");
+// function errorDisplay() {
+//     const formData = document.querySelector();
+//     const span = document.querySelector(".formData > span");
 
-    if (!valid) {
-        formData.classList.add("error");
-        span.textContent = message;
-    } else {
-        console.log("oui");
-        formData.classList.remove("error");
-    }
-}
+//     if (!valid) {
+//         formData.classList.add("error");
+//         span.textContent = message;
+//     } else {
+//         console.log("oui");
+//         formData.classList.remove("error");
+//     }
+// }
 
 //===============================================//
 //================== SUBMIT =====================//

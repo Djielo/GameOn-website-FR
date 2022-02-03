@@ -1,3 +1,5 @@
+//==================== INTERESSANT A ETUDIER ===================//
+
 export function resetAlerts() {
     const formFields = document.getElementsByClassName('formData');
     Array.from(formFields).forEach((el) => {
