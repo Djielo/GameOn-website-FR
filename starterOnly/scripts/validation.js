@@ -34,3 +34,35 @@ export function validateForm() {
         console.log("un champ ou plus est invalide");
     }
 }
+//
+//
+//
+//
+//
+//
+// export function validateForm() {
+//     let formOK = [];
+//     const inputFormContent = new FormData(formAll);
+//     const inputFirst = inputFormContent.get("first");
+//     // // console.log(inputFirst);
+//     // const inputLast = inputFormContent.get("last");
+//     // // console.log(inputLast);
+//     const inputEmail = inputFormContent.get("email");
+//     // const inputBirthdate = inputFormContent.get("birthdate");
+//     // const inputQuantity = inputFormContent.get("quantity");
+//     // const inputCity = inputFormContent.get("city");
+//     // const inputCondition = inputFormContent.get("condition");
+     
+//     formOK.push(validateFirstName(inputFirst));
+//         // validateLastName(inputLast) &&
+//         formOK.push(validateEmail(inputEmail));
+//         // validateBirthdate(inputBirthdate) &&
+//         // validateQuantity(inputQuantity) &&
+//         // validateCity(inputCity) &&
+//         // validateCondition(inputCondition)
+//      if(!formOK.includes(false)) {
+//         console.log("tous les champs sont valides");
+//     } else {
+//         console.log("un champ ou plus est invalide");
+//     }
+// }

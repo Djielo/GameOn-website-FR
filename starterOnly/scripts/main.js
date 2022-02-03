@@ -66,18 +66,18 @@ export const validateCondition = (value) => {
 };
 
 // Fonction qui gère l'affichage des erreurs
-// function errorDisplay() {
-//     const formData = document.querySelector();
-//     const span = document.querySelector(".formData > span");
+function errorDisplay() {
+    const formData = document.querySelector();
+    const span = document.querySelector(".formData > span");
 
-//     if (!valid) {
-//         formData.classList.add("error");
-//         span.textContent = message;
-//     } else {
-//         console.log("oui");
-//         formData.classList.remove("error");
-//     }
-// }
+    if (!valid) {
+        formData.classList.add("error");
+        span.textContent = message;
+    } else {
+        console.log("oui");
+        formData.classList.remove("error");
+    }
+}
 
 //===============================================//
 //================== SUBMIT =====================//
