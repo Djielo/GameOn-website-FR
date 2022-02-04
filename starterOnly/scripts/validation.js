@@ -1,10 +1,10 @@
 import { formAll } from "./main.js";
-import { validateFirstName } from "./main.js";
-import { validateLastName } from "./main.js";
-import { validateEmail } from "./main.js";
-import { validateBirthdate } from "./main.js";
-import { validateQuantity } from "./main.js";
-import { validateCondition } from "./main.js";
+// import { validateFirstName } from "./main.js";
+// import { validateLastName } from "./main.js";
+// import { validateEmail } from "./main.js";
+// import { validateBirthdate } from "./main.js";
+// import { validateQuantity } from "./main.js";
+// import { validateCondition } from "./main.js";
 
 //======================= VALIDATE FORM ========================//
 // Permet de vérifier si chaque champ du fomulaire est valide // Renvoi vers l'acceptation de validation (fonction1) ou affichage des erreurs  (fonction2)
