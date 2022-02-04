@@ -1,64 +1,29 @@
-import { formAll } from "./main.js";
-// import { validateFirstName } from "./main.js";
-// import { validateLastName } from "./main.js";
-// import { validateEmail } from "./main.js";
-// import { validateBirthdate } from "./main.js";
-// import { validateQuantity } from "./main.js";
-// import { validateCondition } from "./main.js";
+// import { formAll } from "./main.js";
+import { validateFirstName } from "./main.js";
+import { validateLastName } from "./main.js";
+import { validateEmail } from "./main.js";
+import { validateBirthdate } from "./main.js";
+import { validateQuantity } from "./main.js";
+import { validateCondition } from "./main.js";
 
 //======================= VALIDATE FORM ========================//
 // Permet de vérifier si chaque champ du fomulaire est valide // Renvoi vers l'acceptation de validation (fonction1) ou affichage des erreurs  (fonction2)
 export const validateForm = () => {
-  const inputFormContent = new FormData(formAll);
-  const inputFirst = inputFormContent.get("first");
-  // console.log(inputFirst);
-  const inputLast = inputFormContent.get("last");
-  // console.log(inputLast);
-  const inputEmail = inputFormContent.get("email");
-  const inputBirthdate = inputFormContent.get("birthdate");
-  const inputQuantity = inputFormContent.get("quantity");
   if (
-    validateFirstName(inputFirst) &&
-    validateLastName(inputLast) &&
-    validateEmail(inputEmail) &&
-    validateBirthdate(inputBirthdate) &&
-    validateQuantity(inputQuantity) &&
-    validateCondition()
+    validateFirstName.value &&
+    validateLastName.value &&
+    validateEmail.value &&
+    validateBirthdate.value &&
+    validateQuantity.value &&
+    validateCondition.value
   ) {
-    console.log("tous les champs sont valides");
+    console.log("Afficher la modal de confirmation");
   } else {
-    console.log("un champ ou plus est invalide");
+    console.log(validateFirstName.value);
+    console.log(validateLastName.value);
+    console.log(validateEmail.value);
+    console.log(validateBirthdate.value);
+    console.log(validateQuantity.value);
+    console.log(validateCondition.value);
   }
 };
-//
-//
-//
-//
-//
-//
-// export function validateForm() {
-//     let formOK = [];
-//     const inputFormContent = new FormData(formAll);
-//     const inputFirst = inputFormContent.get("first");
-//     // // console.log(inputFirst);
-//     // const inputLast = inputFormContent.get("last");
-//     // // console.log(inputLast);
-//     const inputEmail = inputFormContent.get("email");
-//     // const inputBirthdate = inputFormContent.get("birthdate");
-//     // const inputQuantity = inputFormContent.get("quantity");
-//     // const inputCity = inputFormContent.get("city");
-//     // const inputCondition = inputFormContent.get("condition");
-
-//     formOK.push(validateFirstName(inputFirst));
-//         // validateLastName(inputLast) &&
-//         formOK.push(validateEmail(inputEmail));
-//         // validateBirthdate(inputBirthdate) &&
-//         // validateQuantity(inputQuantity) &&
-//         // validateCity(inputCity) &&
-//         // validateCondition(inputCondition)
-//      if(!formOK.includes(false)) {
-//         console.log("tous les champs sont valides");
-//     } else {
-//         console.log("un champ ou plus est invalide");
-//     }
-// }
