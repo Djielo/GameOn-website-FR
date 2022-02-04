@@ -1,4 +1,3 @@
-import { launchModal, closeModal } from "./modal.js";
 import { editNav } from "./menu.js";
 
 //=================================================//
@@ -11,10 +10,12 @@ const regexNumber = /^[0-9]{1}$/;
 //=================================================//
 //================== CONSTANTES ===================//
 const burgerButton = document.querySelector("#burger");
-const modalCrossClose = document.querySelector(".close");
-const modalBtn = document.querySelectorAll(".modal-btn");
 const modalbg = document.querySelector(".bground");
+const modalCrossClose = document.querySelectorAll(".close");
+const modalBtn = document.querySelectorAll(".btn-signup");
 const formAll = document.querySelector("#form");
+const openModalThanks = document.querySelector(".button");
+const modalTY = document.querySelector(".bground-thanks");
 
 //=====================================================//
 //================= RESPONSIVE MENU ===================//
@@ -22,18 +23,25 @@ burgerButton.addEventListener("click", editNav);
 
 //==================================================//
 //================ OPEN AND CLOSE MODAL ============//
-modalCrossClose.addEventListener("click", closeModal);
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-
 // Open modal form by click on button
-function launchModal() {
+const launchModal = () => {
   modalbg.style.display = "block";
-}
+};
 
 // Close modal by cross
-function closeModal() {
+const closeModal = () => {
   modalbg.style.display = "none";
-}
+};
+
+// Open modal thanks
+const openModalTY = () => {
+  modalTY.style.display = "block";
+};
+
+modalCrossClose.forEach((cross) => cross.addEventListener("click", closeModal));
+modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+openModalThanks.addEventListener("click", openModalTY);
+
 //======================================================================================//
 //======= DECLARATION DE FONCTION CONTENANT ADD EVENT LISTENERS + ERRORS DISPLAY =======//
 // Ecouter la modification de prénom
@@ -58,7 +66,7 @@ const validateLastName = () => {
   formAll.last.addEventListener("blur", () => {
     const inputLastName = document.querySelector("input#last");
     const errorLastName = document.querySelector("span.lastError");
-    
+
     // analyse la condition (longueur + regex)
     if (inputLastName.value.length > 1 && regexName.test(inputLastName.value) === true) {
       inputLastName.style.border = "3px solid green";
@@ -110,7 +118,7 @@ const validateQuantity = () => {
   formAll.quantity.addEventListener("blur", () => {
     const inputQuantity = document.querySelector("input#quantity");
     const errorQuantity = document.querySelector("span.quantityError");
-    
+
     if (regexNumber.test(inputQuantity.value)) {
       inputQuantity.style.border = "3px solid green";
       errorQuantity.style.visibility = "hidden";
@@ -139,7 +147,6 @@ const validateCondition = () => {
   });
 };
 
-
 //=========================== VALIDATION DES INPUTS ==============================//
 //=================== APPEL DE FONCTION DES VALIDATION D'INPUT ===================//
 validateFirstName();
@@ -148,8 +155,6 @@ validateEmail();
 validateBirthdate();
 validateQuantity();
 validateCondition();
-
-
 
 //====================================== VALIDATION DU FORMULAIRE ==================================//
 // VERIFICATION DE LA VALIDITÉ DE CHAQUE CHAMP // SI TRUE, RENVOIE VERS L'ACCEPTATION DE VALIDATION //
@@ -163,13 +168,9 @@ const validateForm = () => {
     validateCondition.value
   ) {
     console.log("Afficher la modal de confirmation");
-  } else {
-    console.log(validateFirstName.value);
-    console.log(validateLastName.value);
-    console.log(validateEmail.value);
-    console.log(validateBirthdate.value);
-    console.log(validateQuantity.value);
-    console.log(validateCondition.value);
+    formAll.reset();
+    closeModal();
+    openModalTY();
   }
 };
 
