@@ -1,5 +1,3 @@
-import { editNav } from "./menu.js";
-
 //=================================================//
 //================== REGEXP =======================//
 const regexName = /^[a-zA-Z-\u00C0-\u024F]{2,}$/;
@@ -9,28 +7,43 @@ const regexNumber = /^[0-9]{1}$/;
 
 //=================================================//
 //================== CONSTANTES ===================//
-const burgerButton = document.querySelector("#burger");
 const modalbg = document.querySelector(".bground");
 const modalCrossClose = document.querySelectorAll(".close");
 const modalBtn = document.querySelectorAll(".btn-signup");
 const formAll = document.querySelector("#form");
-const openModalThanks = document.querySelector(".button");
+const openModalThanks = document.querySelector(".btn-submit");
 const modalTY = document.querySelector(".bground-thanks");
-
-//=====================================================//
-//================= RESPONSIVE MENU ===================//
-burgerButton.addEventListener("click", editNav);
+const buttonTY = document.querySelector(".button");
+const errorFirstName = document.querySelector("span.firstError");
+const errorLastName = document.querySelector("span.lastError");
+const errorEmail = document.querySelector("span.emailError");
+const errorBirthdate = document.querySelector("span.birthdateError");
+const errorQuantity = document.querySelector("span.quantityError");
+const errorCondition = document.querySelector("span.checkbox1Error");
+const inputFirstName = document.querySelector("input#first");
+const inputLastName = document.querySelector("input#last");
+const inputEmail = document.querySelector("input#email");
+const inputBirthdate = document.querySelector("input#birthdate");
+const inputQuantity = document.querySelector("input#quantity");
+const inputCondition = document.querySelector("input#checkbox1");
 
 //==================================================//
 //================ OPEN AND CLOSE MODAL ============//
 // Open modal form by click on button
 const launchModal = () => {
   modalbg.style.display = "block";
+  formAll.reset();
+  inputFirstName.style.border = "none";
+  inputLastName.style.border = "none";
+  inputEmail.style.border = "none";
+  inputBirthdate.style.border = "none";
+  inputQuantity.style.border = "none";
 };
 
 // Close modal by cross
 const closeModal = () => {
   modalbg.style.display = "none";
+  modalTY.style.display = "none";
 };
 
 // Open modal thanks
@@ -40,15 +53,14 @@ const openModalTY = () => {
 
 modalCrossClose.forEach((cross) => cross.addEventListener("click", closeModal));
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
-openModalThanks.addEventListener("click", openModalTY);
+openModalThanks.addEventListener("submit", openModalTY);
+buttonTY.addEventListener("click", closeModal);
 
 //======================================================================================//
 //======= DECLARATION DE FONCTION CONTENANT ADD EVENT LISTENERS + ERRORS DISPLAY =======//
 // Ecouter la modification de prénom
 const validateFirstName = () => {
-  formAll.first.addEventListener("blur", () => {
-    const inputFirstName = document.querySelector("input#first");
-    const errorFirstName = document.querySelector("span.firstError");
+  formAll.first.addEventListener("input", () => {
     // analyse la condition (longueur + regex)
     if (inputFirstName.value.length > 1 && regexName.test(inputFirstName.value) === true) {
       inputFirstName.style.border = "3px solid green";
@@ -63,10 +75,7 @@ const validateFirstName = () => {
 };
 // Ecouter la modification de nom
 const validateLastName = () => {
-  formAll.last.addEventListener("blur", () => {
-    const inputLastName = document.querySelector("input#last");
-    const errorLastName = document.querySelector("span.lastError");
-
+  formAll.last.addEventListener("input", () => {
     // analyse la condition (longueur + regex)
     if (inputLastName.value.length > 1 && regexName.test(inputLastName.value) === true) {
       inputLastName.style.border = "3px solid green";
@@ -81,10 +90,7 @@ const validateLastName = () => {
 };
 // Ecouter la modification de email
 const validateEmail = () => {
-  formAll.email.addEventListener("blur", () => {
-    const inputEmail = document.querySelector("input#email");
-    const errorEmail = document.querySelector("span.emailError");
-
+  formAll.email.addEventListener("input", () => {
     if (regexpEmail.test(inputEmail.value)) {
       inputEmail.style.border = "3px solid green";
       errorEmail.style.visibility = "hidden";
@@ -98,10 +104,7 @@ const validateEmail = () => {
 };
 // Ecouter la modification de birthdate
 const validateBirthdate = () => {
-  formAll.birthdate.addEventListener("blur", () => {
-    const inputBirthdate = document.querySelector("input#birthdate");
-    const errorBirthdate = document.querySelector("span.birthdateError");
-
+  formAll.birthdate.addEventListener("input", () => {
     if (regexDate.test(inputBirthdate.value)) {
       inputBirthdate.style.border = "3px solid green";
       errorBirthdate.style.visibility = "hidden";
@@ -115,10 +118,7 @@ const validateBirthdate = () => {
 };
 // Ecouter la modification de quantity
 const validateQuantity = () => {
-  formAll.quantity.addEventListener("blur", () => {
-    const inputQuantity = document.querySelector("input#quantity");
-    const errorQuantity = document.querySelector("span.quantityError");
-
+  formAll.quantity.addEventListener("input", () => {
     if (regexNumber.test(inputQuantity.value)) {
       inputQuantity.style.border = "3px solid green";
       errorQuantity.style.visibility = "hidden";
@@ -133,10 +133,7 @@ const validateQuantity = () => {
 // Ecouter la modification de condition
 const validateCondition = () => {
   validateCondition.value = true;
-  formAll.checkbox1.addEventListener("click", () => {
-    const inputCondition = document.querySelector("input#checkbox1");
-    const errorCondition = document.querySelector("span.checkbox1Error");
-
+  formAll.checkbox1.addEventListener("change", () => {
     if (inputCondition.checked === true) {
       errorCondition.style.visibility = "hidden";
       validateCondition.value = true;
@@ -168,7 +165,6 @@ const validateForm = () => {
     validateCondition.value
   ) {
     console.log("Afficher la modal de confirmation");
-    formAll.reset();
     closeModal();
     openModalTY();
   }
