@@ -17,12 +17,14 @@ const inputLastName = document.querySelector("input#last");
 const inputEmail = document.querySelector("input#email");
 const inputBirthdate = document.querySelector("input#birthdate");
 const inputQuantity = document.querySelector("input#quantity");
+const listRadioLocation = document.querySelectorAll('input[name="location"]');
 const inputCondition = document.querySelector("input#checkbox1");
 const errorFirstName = document.querySelector("span.firstError");
 const errorLastName = document.querySelector("span.lastError");
 const errorEmail = document.querySelector("span.emailError");
 const errorBirthdate = document.querySelector("span.birthdateError");
 const errorQuantity = document.querySelector("span.quantityError");
+const errorLocation = document.querySelector("span.locationError");
 const errorCondition = document.querySelector("span.checkbox1Error");
 
 //================ OPEN AND CLOSE MODAL ============//
@@ -48,19 +50,29 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 openModalThanks.addEventListener("submit", openModalTY);
 buttonTY.addEventListener("click", closeModal);
 
-//======= DECLARATION DE FONCTION CONTENANT ADD EVENT LISTENERS + ERRORS DISPLAY =======//
+//===================== DECLARATION DE FONCTION ======================//
+//=============== GENERIC SUCCESS AND ERRORS DISPLAY =================//
+const setForSuccess = (input, error, validate) => {
+  input.style.border = "3px solid green";
+  error.style.visibility = "hidden";
+  validate.value = true;
+};
+
+const setForError = (input, error, validate) => {
+  input.style.border = "3px solid red";
+  error.style.visibility = "visible";
+  validate.value = false;
+};
+
+//======================= ADD EVENT LISTENERS ========================//
 // Ecouter la modification de prénom
 const validateFirstName = () => {
   formAll.first.addEventListener("input", () => {
     // teste la condition (longueur + regex)
     if (inputFirstName.value.length > 1 && regexName.test(inputFirstName.value) === true) {
-      inputFirstName.style.border = "3px solid green";
-      errorFirstName.style.visibility = "hidden";
-      validateFirstName.value = true;
+      setForSuccess(inputFirstName, errorFirstName, validateFirstName);
     } else {
-      inputFirstName.style.border = "3px solid red";
-      errorFirstName.style.visibility = "visible";
-      validateFirstName.value = false;
+      setForError(inputFirstName, errorFirstName, validateFirstName);
     }
   });
 };
@@ -69,13 +81,9 @@ const validateLastName = () => {
   formAll.last.addEventListener("input", () => {
     // teste la condition (longueur + regex)
     if (inputLastName.value.length > 1 && regexName.test(inputLastName.value) === true) {
-      inputLastName.style.border = "3px solid green";
-      errorLastName.style.visibility = "hidden";
-      validateLastName.value = true;
+      setForSuccess(inputLastName, errorLastName, validateLastName);
     } else {
-      inputLastName.style.border = "3px solid red";
-      errorLastName.style.visibility = "visible";
-      validateLastName.value = false;
+      setForError(inputLastName, errorLastName, validateLastName);
     }
   });
 };
@@ -84,13 +92,9 @@ const validateEmail = () => {
   formAll.email.addEventListener("input", () => {
     // teste la condition (regex)
     if (regexpEmail.test(inputEmail.value)) {
-      inputEmail.style.border = "3px solid green";
-      errorEmail.style.visibility = "hidden";
-      validateEmail.value = true;
+      setForSuccess(inputEmail, errorEmail, validateEmail);
     } else {
-      inputEmail.style.border = "3px solid red";
-      errorEmail.style.visibility = "visible";
-      validateEmail.value = false;
+      setForError(inputEmail, errorEmail, validateEmail);
     }
   });
 };
@@ -99,13 +103,9 @@ const validateBirthdate = () => {
   formAll.birthdate.addEventListener("input", () => {
     // teste la condition (regex)
     if (regexDate.test(inputBirthdate.value)) {
-      inputBirthdate.style.border = "3px solid green";
-      errorBirthdate.style.visibility = "hidden";
-      validateBirthdate.value = true;
+      setForSuccess(inputBirthdate, errorBirthdate, validateBirthdate);
     } else {
-      inputBirthdate.style.border = "3px solid red";
-      errorBirthdate.style.visibility = "visible";
-      validateBirthdate.value = false;
+      setForError(inputBirthdate, errorBirthdate, validateBirthdate);
     }
   });
 };
@@ -114,16 +114,30 @@ const validateQuantity = () => {
   formAll.quantity.addEventListener("input", () => {
     // teste la condition (regex)
     if (regexNumber.test(inputQuantity.value)) {
-      inputQuantity.style.border = "3px solid green";
-      errorQuantity.style.visibility = "hidden";
-      validateQuantity.value = true;
+      setForSuccess(inputQuantity, errorQuantity, validateQuantity);
     } else {
-      inputQuantity.style.border = "3px solid red";
-      errorQuantity.style.visibility = "visible";
-      validateQuantity.value = false;
+      setForError(inputQuantity, errorQuantity, validateQuantity);
     }
   });
 };
+
+const validateLocation = () => {
+  let locationValue;
+  for (const location of listRadioLocation) {
+    if (location.checked) {
+      locationValue = location.value;
+      console.log(location.value);
+    }
+  }
+  if (locationValue) {
+    validateLocation.value = true;
+    errorLocation.style.visibility = "hidden";
+  } else {
+    validateLocation.value = false;
+    errorLocation.style.visibility = "visible";
+  }
+};
+
 // Ecouter la modification de condition
 const validateCondition = () => {
   validateCondition.value = true;
@@ -151,15 +165,17 @@ validateCondition();
 //====================================== VALIDATION DU FORMULAIRE ==================================//
 // VERIFICATION DE LA VALIDITÉ DE CHAQUE CHAMP // SI TRUE, RENVOIE VERS L'ACCEPTATION DE VALIDATION //
 const validateForm = () => {
+  validateLocation();
+  console.log(`validateLocation`, validateLocation.value);
   if (
     validateFirstName.value &&
     validateLastName.value &&
     validateEmail.value &&
     validateBirthdate.value &&
     validateQuantity.value &&
+    validateLocation.value &&
     validateCondition.value
   ) {
-    console.log("Afficher la modal de confirmation");
     closeModal();
     openModalTY();
   }
@@ -190,4 +206,5 @@ const inputReset = () => {
   validateEmail.value = false;
   validateBirthdate.value = false;
   validateQuantity.value = false;
+  // validateLocation.value = false;
 };

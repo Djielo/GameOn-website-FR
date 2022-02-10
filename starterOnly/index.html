@@ -9,20 +9,7 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
   </head>
   <header>
-    <nav class="topnav" id="myTopnav">
-      <div class="header-logo"></div>
-      <img alt="logo" src="Logo.png" class="logo"/>
-      <div class="main-navbar">
-        <a href="#" class="active"><span>Accueil</span></a>
-        <a href="#"><span>Détails de l'évènement</span></a>
-        <a href="#"><span>À propos</span></a>
-        <a href="#"><span>Contact</span></a>
-        <a href="#"><span>Évènements passés</span></a>
-        <a href="#" class="icon" id="burger">
-          <i class="fa fa-bars"></i>
-        </a>
-      </div>
-    </nav>
+    <div id="menu"></div>
   </header>
   <body>
     <main>
@@ -73,7 +60,7 @@
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div class="formData formDataCity">
-                <input type="radio" id="location1" class="checkbox-input" name="location" value="New York" checked />
+                <input type="radio" id="location1" class="checkbox-input" name="location" value="New York" />
                 <label for="location1" class="checkbox-label">
                   <span class="checkbox-icon"></span>
                   New York
@@ -101,9 +88,10 @@
                 <input type="radio" id="location6" class="checkbox-input" name="location" value="Portland" />
                 <label for="location6" class="checkbox-label">
                   <span class="checkbox-icon"></span>
-                  Portland
+                  Portland<br />
                 </label>
               </div>
+              <span class="locationError">Veuillez choisir une location</span>
               <div class="formData">
                 <input type="checkbox" id="checkbox1" class="checkbox-input terms" checked />
                 <label for="checkbox1" class="checkbox2-label" required>
@@ -137,5 +125,6 @@
     </footer>
     <script src="./scripts/main.js"></script>
     <script src="./scripts/menu.js"></script>
+    <script src="./scripts/header.js"></script>
   </body>
 </html>
