@@ -377,16 +377,9 @@ input {
   background: #3876ac;
 }
 
-.send-button {
+.disable-button {
   background: #707070;
-  display: block;
-  margin: 0 auto;
-  border-radius: 7px;
-  font-size: 1rem;
-  padding: 12px 82px;
-  color: rgb(0, 0, 0);
-  cursor: pointer;
-  border: 0;
+  color: black;  
 }
 
 /* custom select styles */
