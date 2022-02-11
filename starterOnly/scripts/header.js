@@ -1,8 +1,6 @@
-document.getElementById("menu").innerHTML = 
-
-`<nav class="topnav" id="myTopnav">
+document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
   <div class="header-logo"></div>
-  <img alt="logo" src="Logo.png" class="logo" />
+  <img alt="logo" src="./assets/img/Logo.png" class="logo" />
   <div class="main-navbar">
     <a href="#" class="active">
       <span>Accueil</span>
@@ -23,4 +21,4 @@ document.getElementById("menu").innerHTML =
       <i class="fa fa-bars"></i>
     </a>
   </div>
-</nav>`
+</nav>`;

@@ -150,7 +150,7 @@ main {
 
 /* Modal form */
 
-.button {
+.btn-close-thanks {
   background: #fe142f;
   margin-top: 0.5em;
   padding: 1em;
@@ -160,7 +160,7 @@ main {
   font-size: 16px;
 }
 
-.button:hover {
+.btn-close-thanks:hover {
   background: #3876ac;
 }
 
@@ -360,7 +360,8 @@ input {
   transform: rotate(-45deg);
 }
 .btn-submit,
-.btn-signup {
+.btn-signup,
+.open-modal-thanks {
   background: #fe142f;
   display: block;
   margin: 0 auto;
@@ -374,6 +375,18 @@ input {
 
 .btn-signup:hover {
   background: #3876ac;
+}
+
+.send-button {
+  background: #707070;
+  display: block;
+  margin: 0 auto;
+  border-radius: 7px;
+  font-size: 1rem;
+  padding: 12px 82px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  border: 0;
 }
 
 /* custom select styles */
