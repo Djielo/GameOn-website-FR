@@ -119,9 +119,9 @@ div#span {
   width: 100%;
   text-align: center;
 }
-/*====================================== MEDIA QUERY 540 =================================*/
+/*====================================== MEDIA QUERY 700 =================================*/
 
-@media screen and (max-width: 540px) {
+@media screen and (max-width: 700px) {
   .logo {
     width: clamp(180px, 50vw, 300px);
   }

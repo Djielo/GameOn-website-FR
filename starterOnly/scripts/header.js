@@ -1,3 +1,5 @@
+//=================================================================//
+//================= HEADER CALLED IN HTML BY ID ===================//
 document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
   <div class="header-logo"></div>
   <img alt="logo" src="./assets/img/Logo.png" class="logo" />
@@ -22,3 +24,17 @@ document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
     </a>
   </div>
 </nav>`;
+
+//=====================================================//
+//================= RESPONSIVE MENU ===================//
+const burgerButton = document.querySelector("#burger");
+burgerButton.addEventListener("click", editNav);
+
+function editNav() {
+  const x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
