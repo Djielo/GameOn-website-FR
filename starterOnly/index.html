@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
   </head>
-  <header>
-    <div id="menu"></div>
-  </header>
   <body>
+    <header>
+      <div id="menu"></div>
+    </header>
     <main>
       <div class="hero-section">
         <div class="hero-content">
@@ -35,12 +35,12 @@
             <form name="reserve" action="index.html" method="get" id="form" novalidate>
               <div class="formData">
                 <label for="first">Prénom</label>
-                <span class="firstError">Doit contenir au minimum 2 caractères</span>
+                <span class="firstError">Le prénom doit contenir 2 caractères minimum</span>
                 <input type="text" id="first" class="text-control" name="first" minlength="2" />
               </div>
               <div class="formData">
                 <label for="last">Nom</label>
-                <span class="lastError">Doit contenir au minimum 2 caractères</span>
+                <span class="lastError">Le nom doit contenir 2 caractères minimum</span>
                 <input type="text" id="last" class="text-control" name="last" />
               </div>
               <div class="formData">
@@ -50,12 +50,12 @@
               </div>
               <div class="formData">
                 <label for="birthdate">Date de naissance</label>
-                <span class="birthdateError">Doit répondre aux caractéristiques d'une date</span>
+                <span class="birthdateError">Veuillez entrer une date valide (14 ans minimum)</span>
                 <input type="date" id="birthdate" class="text-control" name="birthdate" />
               </div>
               <div class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label>
-                <span class="quantityError">Doit être un chiffre positif</span>
+                <span class="quantityError">Veuillez entrer un chiffre (notez 0 pour aucun tournois)</span>
                 <input type="number" id="quantity" class="text-control" name="quantity" min="0" max="99" />
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -93,8 +93,8 @@
               </div>
               <span class="locationError">N'oubliez pas de sélectionner un tournoi</span>
               <div class="formData">
-                <input type="checkbox" id="checkbox1" class="checkbox-input terms" checked />
-                <label for="checkbox1" class="checkbox2-label" required>
+                <input type="checkbox" id="checkbox1" class="checkbox-input terms" checked required />
+                <label for="checkbox1" class="checkbox2-label">
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
@@ -104,7 +104,7 @@
                   Je souhaite être prévenu des prochains évènements.
                 </label>
               </div>
-              <input type="submit" class="disable-button open-modal-thanks btn-submit" value="C'est parti" disabled/>
+              <input type="submit" class="disable-button open-modal-thanks btn-submit" value="C'est parti" disabled />
               <div id="span"><span class="checkbox1Error">Veuillez accepter les conditions d'utilisation</span></div>
             </form>
           </div>
@@ -124,7 +124,6 @@
       <p class="copyrights">Copyright 2014 - 2022, GameOn Inc.</p>
     </footer>
     <script src="./scripts/header.js"></script>
-    <script src="./scripts/menu.js"></script>
     <script src="./scripts/main.js"></script>
   </body>
 </html>

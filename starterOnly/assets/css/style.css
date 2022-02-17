@@ -530,31 +530,6 @@ footer {
   margin: 0 20px;
 }
 
-/* ====================================== MEDIA QUERY 768 =================================
-
-@media screen and (max-width: 768px) {
-  .topnav a {
-    display: none;
-  }
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  .topnav.responsive {
-    position: relative;
-  }
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-} */
-
 /*====================================== MEDIA QUERY 800 =================================*/
 
 @media screen and (max-width: 800px) {
