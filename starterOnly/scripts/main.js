@@ -1,8 +1,8 @@
 //================== REGEXP =======================//
 const regexName = /^[a-zA-Z-\u00C0-\u024F]{2,}$/;
 const regexpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,10})+$/;
-const regexDate = /^19[00-99]{2}|200[0-8]{1}-(0[1-9]|1[0-2])-(0[1-9]|1[0-9]|2[0-9]|3[0-1])$/;
-const regexNumber = /^[0-9]{1}$/;
+const regexDate = /^19[00-99]{2}|200[0-8]{1}[./-](0[1-9]|1[0-2])[./-](0[1-9]|1[0-9]|2[0-9]|3[0-1])$/;
+const regexNumber = /^[0-9]{1,2}$/;
 
 //================== CONSTANTES ===================//
 const modalbg = document.querySelector(".bground");
@@ -32,15 +32,22 @@ let isValidForm;
 // Open modal form by click on button
 const launchModal = () => {
   modalbg.style.display = "block";
-  inputReset();
 };
 
 // Open modal thanks
 const thanksOpenModal = () => {
   modalThanks.style.display = "block";
+  // Initialise le contenu des inputs afin qu'ils soient vides
+  formAll.reset();
+  // Voir RESET en bas de page
+  // Initialise les borders des inputs
+  // Initialise les inputs à false pour une nouvelle inscription
+  // Initialise le bouton "submit" de la modal afin qu'il ne soit pas cliquable
+  // Initialise l'apparence du bouton "submit" de la modal afin qu'il soit grisé
+  inputReset();
 };
 
-// Close modal by cross
+// Close modal by cross pour les modals du formulaire et de remerciement
 const closeModal = () => {
   modalbg.style.display = "none";
   modalThanks.style.display = "none";
@@ -56,15 +63,13 @@ btnCloseThanks.addEventListener("click", closeModal);
 const setForSuccess = (input, error, validate) => {
   input.style.border = "3px solid green";
   error.style.visibility = "hidden";
-  validate.value = true;
-  // sendButton.disabled = false;
+  validate.value = true;  
 };
 
 const setForError = (input, error, validate) => {
   input.style.border = "3px solid red";
   error.style.visibility = "visible";
-  validate.value = false;
-  // sendButton.disabled = true;
+  validate.value = false;  
 };
 
 //======================= ADD EVENT LISTENERS ========================//
@@ -108,7 +113,7 @@ const validateEmail = () => {
 const validateBirthdate = () => {
   formAll.birthdate.addEventListener("input", () => {
     // teste la condition (regex)
-    if (regexDate.test(inputBirthdate.value)) {
+    if (regexDate.test(inputBirthdate.value)) {      
       setForSuccess(inputBirthdate, errorBirthdate, validateBirthdate);
     } else {
       setForError(inputBirthdate, errorBirthdate, validateBirthdate);
@@ -135,9 +140,7 @@ const validateLocation = () => {
   listRadioLocation.forEach((location) => {
     location.addEventListener("click", () => {
       if (location.checked) {
-        console.log("Une location est-elle cochée ?", location.checked);
         locationValue = location.value;
-        console.log(`La valeur de la location est:`, locationValue);
       }
       if (locationValue) {
         validateLocation.value = true;
@@ -184,14 +187,10 @@ const changeStateButton = () => {
     validateFirstName.value &&
     validateLastName.value &&
     validateEmail.value &&
-    // console.log("validateEmail", validateEmail.value) &&
     validateBirthdate.value &&
-    // console.log("validateBirthdate", validateBirthdate.value) &&
     validateQuantity.value &&
     validateLocation.value &&
-    // console.log("validateQuantity", validateQuantity.value) &&
     validateCondition.value
-    // console.log("validateCondition", validateCondition.value)
   ) {
     submitButton.disabled = false;
     submitButton.classList.remove("disable-button");
@@ -208,7 +207,6 @@ const changeStateButton = () => {
 formAll.addEventListener("submit", (e) => {
   // Empêche le rechargement de la page
   e.preventDefault();
-  console.log(isValidForm);
   if (isValidForm) {
     closeModal();
     thanksOpenModal();
@@ -218,9 +216,7 @@ formAll.addEventListener("submit", (e) => {
 
 //================== RESET ====================//
 const inputReset = () => {
-  // Reset le contenu des inputs
-  formAll.reset();
-  // Reset les borders des inputs
+  // Initialise les borders des inputs et affiche l'erreur des radios à checker
   inputFirstName.style.border = "none";
   inputLastName.style.border = "none";
   inputEmail.style.border = "none";
@@ -234,6 +230,8 @@ const inputReset = () => {
   validateBirthdate.value = false;
   validateQuantity.value = false;
   validateLocation.value = false;
+  // Initialise  le bouton "submit" de la modal afin qu'il ne soit pas cliquable
   submitButton.disabled = true;
+  // Initialise  l'apparence du bouton "submit" de la modal afin qu'il soit grisé
   submitButton.classList.add("disable-button");
 };
