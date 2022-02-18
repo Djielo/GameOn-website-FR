@@ -28,6 +28,13 @@ document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
 //=====================================================//
 //================= RESPONSIVE MENU ===================//
 const burgerButton = document.querySelector("#burger");
-burgerButton.addEventListener("click", editNav = () => {
-  document.getElementById("myTopnav");  
-});
+burgerButton.addEventListener("click", editNav);
+
+function editNav() {
+  let x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
