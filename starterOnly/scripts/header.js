@@ -1,8 +1,8 @@
 //=================================================================//
 //================= HEADER CALLED IN HTML BY ID ===================//
+// innerHTML injecte la balise "nav" dans le html appelé par l'id "menu" du html
 document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
-  <div class="header-logo"></div>
-  <img alt="logo" src="./assets/img/Logo.png" class="logo" />
+  <img alt="logo" src="./assets/img/Logo.png" class="header-logo" />  
   <div class="main-navbar">
     <a href="#" class="active">
       <span>Accueil</span>
@@ -33,6 +33,7 @@ burgerButton.addEventListener("click", editNav);
 function editNav() {
   let x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
+    // Injection de la classe "responsive" dans le html à partir du media-query 700px pour ouvrir le menu en cliquant sur le burger (menu)
     x.className += " responsive";
   } else {
     x.className = "topnav";

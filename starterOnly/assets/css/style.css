@@ -50,6 +50,7 @@ img {
   margin: 20px 20px 0 20px;
 }
 .header-logo {
+  margin-bottom: 5px;
   float: left;
 }
 .main-navbar {
@@ -360,7 +361,7 @@ div#span {
 /*====================================== MEDIA QUERY 700 =================================*/
 
 @media screen and (max-width: 700px) {
-  .logo {
+  .header-logo {
     width: clamp(11.25rem, 8.4722rem + 17.7778vw, 16.25rem);
   }
   .topnav.responsive {
