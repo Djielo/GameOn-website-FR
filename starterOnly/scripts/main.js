@@ -8,7 +8,7 @@ const regexDate = /^19[00-99]{2}|200[0-8]{1}[./-](0[1-9]|1[0-2])[./-](0[1-9]|1[0
 // teste si le chiffre ou nombre est conforme
 const regexNumber = /^[0-9]{1,2}$/;
 
-//================== CONSTANTES ===================//
+//=================== VARIABLES ==================//
 // va chercher l'id "form" dans le html pour gérer l'analyse, validation et reset des différentes parties du formulaire
 const formAll = document.querySelector("#form");
 // va chercher différentes classes qui vont gérer l'ouverture, cloture des modals
