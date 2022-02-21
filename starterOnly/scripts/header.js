@@ -10,7 +10,7 @@ document.getElementById("menu").innerHTML = `<nav class="topnav" id="myTopnav">
     <a href="#"><span>Contact</span></a>
     <a href="#"><span>Évènements passés</span></a>
     <a href="#" class="icon" id="burger">
-      <i class="fa fa-bars"></i>
+          <i class="fa fa-bars"></i>
     </a>
   </div>
 </nav>`;
